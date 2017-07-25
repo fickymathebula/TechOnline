@@ -1,0 +1,69 @@
+﻿<%@ Master Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="SubMaster.master.cs" Inherits="TechOnline.SubMaster" %>
+
+<asp:Content ID="Content2" ContentPlaceHolderID="MainContent" runat="server">
+
+       <script type="text/javascript">
+           
+           var tempData = "";
+
+           function searchItem(event) {
+               var keycode = (event.keyCode ? event.keyCode : event.which);
+               if (keycode == '13') {
+                  
+                   if (document.getElementById('<%=txtClickSearch.ClientID %>').value != "") {
+                       tempData = document.getElementById('<%=txtClickSearch.ClientID %>').value + "," + document.getElementById('<%=SearchProDept.ClientID %>').value;
+                       document.getElementById('<%=txtTemp.ClientID %>').value = tempData;
+                       document.getElementById('<%=btnClickSearch.ClientID %>').click();
+                   } 
+               }
+           }
+
+           function btnClicked() {
+               window.location.href = "Search?defaultData=" + tempData + "," + document.getElementById('<%=SearchProDept.ClientID %>').value;
+               sessionStorage.setItem("searchText", tempData);
+           }
+
+           $(document).ready(function () {
+
+               var text = sessionStorage.getItem("searchText").split(',');
+
+               if (sessionStorage.getItem("searchText") != null)
+               {
+                   document.getElementById('<%=SearchProDept.ClientID %>').value = text[1];
+                   document.getElementById('<%=txtClickSearch.ClientID %>').value = text[0];
+                   sessionStorage.clear();
+               }
+           });
+
+    </script>
+
+    <div class="container">
+
+        <div class="container container-fluid" style="background-color: cornflowerblue;">
+            <br />
+            <div class="row">
+                <div class="col-sm-4">
+                    <%--<select id="ProDepartment" class="form-control" runat="server"></select>--%>
+                </div>
+                <div class="col-lg-3">
+
+                    <select id="SearchProDept" class="form-control" runat="server">
+                        <option value="*">Search All Departments</option>
+                    </select>
+
+                </div>
+
+                <div class="col-lg-5">
+                    <input type="text" class="form-control" placeholder="Search" style="width: 100%" runat="server" id="txtClickSearch" onkeypress="searchItem(event)">                                       
+                </div>
+            </div>
+            <br />
+        </div>
+        <br />
+        <asp:ContentPlaceHolder ID="ChildContent1" runat="server" />
+    </div>    
+    
+    <input type="button" id="btnClickSearch" runat="server" onclick="btnClicked()" value="Test" hidden/>
+    <input type="text" runat="server"  id="txtTemp" hidden/>                    
+                    
+</asp:Content>
