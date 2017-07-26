@@ -4,7 +4,7 @@
     <div class="row">
 
         <div class="row" id="ErrorPanel">
-
+            <br /><br />
         <div class="col-sm-3"></div>
         <div class="col-sm-6" id="divErrorDisplay" runat="server">
             
@@ -29,6 +29,9 @@
         </div>
 
     </div>
+    
+
+    <asp:Button ID="linkWishList" runat="server" OnClick="linkWishList_Click" hidden="true"> </asp:Button> 
 
     <style>
 
@@ -47,5 +50,15 @@
                  position:absolute;
         }
  </style>
+
+    <script>
+
+        function addToWishList()
+        {   
+            document.getElementById('<%=linkWishList.ClientID%>').click();
+        }
+
+    </script>
+
 
 </asp:Content>

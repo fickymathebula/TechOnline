@@ -25,7 +25,25 @@ namespace TechOnline
                 lblWelcome.InnerHtml = "Hi!";
                 lblLoginOrLogout.InnerHtml = "<a runat='server' href='Login.aspx'>Login</a>";
                 lblRegister.InnerHtml = "<a runat='server' href='Login.aspx'>Register</a>";
-            }            
+            }
+
+            int wishListCount = 0;
+            try
+            {
+                if (Request.Cookies["WishListItem"].Value != "" || Request.Cookies["WishListItem"].Value != null)
+                {
+                    string collectionString = Request.Cookies["WishListItem"].Value.Remove(Request.Cookies["WishListItem"].Value.Length - 1);
+                    string[] items = collectionString.Split(',');
+
+                    for (int x = 0; x < items.Length; x++)
+                    {
+                        wishListCount++;
+                    }
+                }
+            }
+            catch (Exception) { }
+
+            wishListDisp.InnerHtml = "  " + wishListCount;
         }
 
         protected void linkLogout_Click(object sender, EventArgs e)

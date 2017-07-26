@@ -10,25 +10,7 @@
 namespace TechOnline {
     
     
-    public partial class Search {
-        
-        /// <summary>
-        /// divErrorDisplay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divErrorDisplay;
-        
-        /// <summary>
-        /// divDisplay control.
-        /// </summary>
-        /// <remarks>
-        /// Auto-generated field.
-        /// To modify move field declaration from designer file to code-behind file.
-        /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlGenericControl divDisplay;
+    public partial class WishList {
         
         /// <summary>
         /// leftPanel control.
@@ -40,6 +22,15 @@ namespace TechOnline {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl leftPanel;
         
         /// <summary>
+        /// btnAddToCartTop control.
+        /// </summary>
+        /// <remarks>
+        /// Auto-generated field.
+        /// To modify move field declaration from designer file to code-behind file.
+        /// </remarks>
+        protected global::System.Web.UI.WebControls.Button btnAddToCartTop;
+        
+        /// <summary>
         /// rightPanel control.
         /// </summary>
         /// <remarks>
@@ -49,21 +40,21 @@ namespace TechOnline {
         protected global::System.Web.UI.HtmlControls.HtmlGenericControl rightPanel;
         
         /// <summary>
-        /// linkWishList control.
+        /// gridWishList control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.WebControls.Button linkWishList;
+        protected global::System.Web.UI.WebControls.GridView gridWishList;
         
         /// <summary>
-        /// txtTemp control.
+        /// btnAddToCartBottom control.
         /// </summary>
         /// <remarks>
         /// Auto-generated field.
         /// To modify move field declaration from designer file to code-behind file.
         /// </remarks>
-        protected global::System.Web.UI.HtmlControls.HtmlInputText txtTemp;
+        protected global::System.Web.UI.WebControls.Button btnAddToCartBottom;
     }
 }

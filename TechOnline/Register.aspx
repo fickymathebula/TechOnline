@@ -7,7 +7,7 @@
     <script src="Scripts/jquery-1.10.2.js"></script>
 
     <div class="row" id="ErrorPanel">
-
+        <br />
         <div class="col-sm-3"></div>
         <div class="col-sm-6" id="divErrorDisplay" runat="server">
 

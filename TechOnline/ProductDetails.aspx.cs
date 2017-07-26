@@ -12,13 +12,10 @@ namespace TechOnline
     public partial class ProductDetails : System.Web.UI.Page
     {
         string strConnection = WebConfigurationManager.ConnectionStrings["DefaultConnection"].ConnectionString;
+        string selectedItem = "";
 
         protected void Page_Load(object sender, EventArgs e)
         {
-            //SqlCommand lookupCMD = new SqlCommand("select DataValue from DataLookup WHERE Id = @prodRef", con);
-            //lookupCMD.Parameters.AddWithValue("@prodRef", reader["StorageLocation"]);
-            //lookupCMD.ExecuteNonQuery();
-
             SqlConnection con = new SqlConnection(strConnection);
 
             SqlCommand cmd = new SqlCommand("select * from Product WHERE Id = @ProdId", con);
@@ -101,13 +98,13 @@ namespace TechOnline
                     }
 
                     divDetails.InnerHtml = details;
-
+                    selectedItem = reader["Id"].ToString();
                     // Cart panel
 
                     divCart.InnerHtml = "<div style='border:solid; border-color:lavender; margin-top:50px; margin-right:50px; margin-left:50px; text-align:center;'><br/><br/>" +
                              "<span> <strong  Style='color:Red;'>  R " + reader["SellingPrice"] + " </strong> </span><br><br>" +
-                             "<button type='button' style='width: 250px; background-color:lightgreen; color:white;'> <span class='glyphicon glyphicon-plus' style='color:white'></span>  <span class='glyphicon glyphicon-shopping-cart' style='color:white'></span> Add to cart </button> <br><br>" +
-                             "<span class='glyphicon glyphicon-heart' style='color:red'></span> <a href='#'> Add to wish list </a>  <br><br>" +
+                             "<button type='button' style='width: 250px; background-color:green; color:white;'> <span class='glyphicon glyphicon-plus' style='color:white'></span>  <span class='glyphicon glyphicon-shopping-cart' style='color:white'></span> Add to cart </button> <br><br>" +
+                             "<span class='glyphicon glyphicon-heart' style='color:red'></span> <a href='#' onclick='addToWishList(" + reader["Id"] + ");' id='wishItem' runat='server'> Add to wish list </a>  <br><br>" +
                             "</div> ";
                 }
 
@@ -116,7 +113,43 @@ namespace TechOnline
             {
 
             }
-           
+
+        }
+
+
+        public void linkWishList_Click(object sender, EventArgs e)
+        {
+            //Response.Cookies["WishListItem"].Value = "";
+            //Response.Cookies["WishListDate"].Value = "";
+
+            if (Request.Cookies["WishListItem"].Value == "" || Request.Cookies["WishListItem"].Value == null)
+            {
+                Response.Cookies["WishListItem"].Value = selectedItem + ",";
+                Response.Cookies["WishListDate"].Value = DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year + ",";
+            }
+            else
+            {
+                string collectionString = Request.Cookies["WishListItem"].Value.Remove(Request.Cookies["WishListItem"].Value.Length - 1);
+                string[] items = collectionString.Split(',');
+                bool addValue = true;
+
+                for (int x = 0; x < items.Length; x++)
+                {
+                    if (items[x] == selectedItem)
+                    {
+                        divErrorDisplay.InnerHtml = "<p class='alert alert-success' runat='server'>Item already added to your wish list.</p>";
+                        addValue = false;
+                    }
+                }
+
+                if (addValue == true)
+                {
+                    Response.Cookies["WishListItem"].Value += Request.Cookies["WishListItem"].Value + selectedItem + ",";
+                    Response.Cookies["WishListDate"].Value += Request.Cookies["WishListDate"].Value + DateTime.Now.Day + "/" + DateTime.Now.Month + "/" + DateTime.Now.Year + ",";
+                    Response.Redirect(Request.RawUrl);
+                    divErrorDisplay.InnerHtml = "<p class='alert alert-success' runat='server'>Item successfully added to wish list.</p>";
+                }
+            }
 
         }
     }

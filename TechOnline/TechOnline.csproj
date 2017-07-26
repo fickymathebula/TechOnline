@@ -128,6 +128,7 @@
   <ItemGroup>
     <Content Include="About.aspx" />
     <Content Include="AddProduct.aspx" />
+    <Content Include="Cart.aspx" />
     <Content Include="Contact.aspx" />
     <Content Include="Content\bootstrap-submenu.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -145,6 +146,7 @@
     <Content Include="ApplicationInsights.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="WishList.aspx" />
     <None Include="Scripts\jquery-1.10.2.intellisense.js" />
     <Content Include="Images\Cart.png" />
     <Content Include="Images\Cellular-Dept.jpg" />
@@ -211,6 +213,13 @@
       <DependentUpon>About.aspx</DependentUpon>
     </Compile>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Cart.aspx.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Cart.aspx.designer.cs">
+      <DependentUpon>Cart.aspx</DependentUpon>
+    </Compile>
     <Compile Include="Contact.aspx.cs">
       <DependentUpon>Contact.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -291,6 +300,13 @@
     </Compile>
     <Compile Include="ViewSwitcher.ascx.designer.cs">
       <DependentUpon>ViewSwitcher.ascx</DependentUpon>
+    </Compile>
+    <Compile Include="WishList.aspx.cs">
+      <DependentUpon>WishList.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="WishList.aspx.designer.cs">
+      <DependentUpon>WishList.aspx</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>

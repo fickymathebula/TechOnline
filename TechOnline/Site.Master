@@ -67,8 +67,8 @@
                         <li runat="server" id="lblLoginOrLogout"> <asp:LinkButton id="linkLogout" runat="server" OnClick="linkLogout_Click" >Logout</asp:LinkButton>  </li> 
                          <li runat="server" id="lblRegister"></li>
                         <li><a runat="server" href="~/">My Account</a></li> 
-                         <img src="Images/WishList.png" /> <label>0</label>
-                        <img src="Images/Cart.png" /> <label>0</label>
+                        <p class="navbar-text" title="Wish List"><a href="WishList.aspx"> <span class="glyphicon glyphicon-heart" style="background-color:red;color:white; height:25px; width:55px;text-align:center" id="wishListDisp" runat="server"> </span> </a> </p>
+                        <p class="navbar-text" title="Cart"> <a href="Cart.aspx"><span class="glyphicon glyphicon-shopping-cart" style="background-color:green;color:white; height:25px;width:55px; text-align:center""> 0 </span> </a> </p>
                     </ul>
                     
                 </div>
